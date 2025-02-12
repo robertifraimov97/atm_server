@@ -23,30 +23,36 @@ def balance(account_number):
 @app.route('/accounts/<account_number>/withdraw', methods=['POST'])
 def withdraw_money(account_number):
     """Withdraws money from an account if sufficient balance exists."""
-    data = request.json
-    amount = data.get("amount", 0)
+    try:
+        data = request.get_json()
+        amount = data.get("amount", 0)
 
-    if amount <= 0:
-        return jsonify({"error": "Invalid amount"}), 400
+        if amount <= 0:
+            return jsonify({"error": "Invalid amount"}), 400
 
-    if withdraw(account_number, amount):
-        return jsonify({"message": "Withdrawal successful", "amount": amount})
-    else:
-        return jsonify({"error": "Insufficient funds or account not found"}), 400
+        if withdraw(account_number, amount):
+            return jsonify({"message": "Withdrawal successful", "amount": amount})
+        else:
+            return jsonify({"error": "Insufficient funds or account not found"}), 400
+    except Exception:
+        return jsonify({"error": "Invalid JSON format"}), 400
 
 @app.route('/accounts/<account_number>/deposit', methods=['POST'])
 def deposit_money(account_number):
     """Deposits money into an account."""
-    data = request.json
-    amount = data.get("amount", 0)
+    try:
+        data = request.get_json()
+        amount = data.get("amount", 0)
 
-    if amount <= 0:
-        return jsonify({"error": "Invalid amount"}), 400
+        if amount <= 0:
+            return jsonify({"error": "Invalid amount"}), 400
 
-    if deposit(account_number, amount):
-        return jsonify({"message": "Deposit successful", "amount": amount})
-    else:
-        return jsonify({"error": "Account not found"}), 404
+        if deposit(account_number, amount):
+            return jsonify({"message": "Deposit successful", "amount": amount})
+        else:
+            return jsonify({"error": "Account not found"}), 404
+    except Exception:
+        return jsonify({"error": "Invalid JSON format"}), 400
 
 import os
 
