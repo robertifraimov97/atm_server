@@ -5,6 +5,13 @@ from accounts import get_balance, withdraw, deposit
 
 app = Flask(__name__)
 
+
+# Default route (Homepage)
+@app.route('/')
+def home():
+    """Default route to provide API information."""
+    return jsonify({"message": "Welcome to the Banking API! Use the provided endpoints to interact with the system."})
+
 @app.route('/accounts/<account_number>/balance', methods=['GET'])
 def balance(account_number):
     """Returns the balance of a given account."""
