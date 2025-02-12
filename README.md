@@ -19,13 +19,13 @@ The following endpoints are available in the Banking API:
 
 1️⃣ Get Account Balance
 
-🔹 Endpoint: GET /accounts/<account_number>/balance
+🔹 Endpoint: GET /accounts/<account_number>/balance  
 🔹 Example Request: curl -X GET https://secure-savannah-57890-9c2b88f4bf0c.herokuapp.com/accounts/123456/balance  
 🔹 Expected Response: {"account_number": "123456", "balance": 1000.0}
 
 2️⃣ Withdraw Funds
 
-🔹 Endpoint: POST /accounts/<account_number>/withdraw
+🔹 Endpoint: POST /accounts/<account_number>/withdraw  
 🔹 Example Request: curl -X POST "https://secure-savannah-57890-9c2b88f4bf0c.herokuapp.com/accounts/123456/withdraw" \
      -H "Content-Type: application/json" \
      -d '{"amount": 200}'  
@@ -33,7 +33,7 @@ The following endpoints are available in the Banking API:
 
 3️⃣ Deposit Funds
 
-🔹 Endpoint: POST /accounts/<account_number>/deposit
+🔹 Endpoint: POST /accounts/<account_number>/deposit  
 🔹 Example Request: curl -X POST "https://secure-savannah-57890-9c2b88f4bf0c.herokuapp.com/accounts/123456/deposit" \
      -H "Content-Type: application/json" \
      -d '{"amount": 500}'  
